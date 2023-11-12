@@ -14,6 +14,10 @@ def main():
     database_sheet = retail_company_document.worksheet("Product Database")
 
     pending_rows = pending_sheet.get("A2:A3")
+
+    if not pending_rows:
+        raise Exception("No pending UPCs found.")
+
     pending_upcs = [upc for row in pending_rows for upc in row]
 
     get_apis_append_response(pending_upcs, database_sheet)
