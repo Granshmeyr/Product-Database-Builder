@@ -1,10 +1,11 @@
+
 # Product Database Builder
 
 Dynamically build a product database using multiple barcode-driven APIs.
 
 This is a retail-oriented application which is used to dynamically build a product database  on-the-fly.
 
-A Google Sheets document is used in the back-end to store the product entries. This document can then double as a back-end for a Google AppSheet application to quickly deploy an inventory management application.
+A Google Sheets document is used in the back-end to store the product entries. This document can then double as a back-end for a Google AppSheet application or even a Google Form to quickly deploy an inventory management solution.
 
 ## Usage
 
@@ -23,6 +24,8 @@ These listed codes are then grabbed by `product_database_builder.py` and sent in
 To actually use the application, run `python ./start.py` in Windows or Linux. Recommended usage is to schedule a cron job to run the application every X minutes.
 
 ## Important Notes
+
+This application utilizes `gspread` to interact with the Google Sheets API. This requires creation of a credentials file as outline in https://docs.gspread.org/en/latest/oauth2.html#for-bots-using-service-account.
 
 Utilized APIs are:
 * https://www.upcitemdb.com/
