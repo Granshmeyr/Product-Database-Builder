@@ -9,7 +9,7 @@ A Google Sheets document is used in the back-end to store the product entries. T
 
 ## Usage
 
-Most 'settings' related properties are currently hard-coded within the `product_database_builder.py` script. Pending UPC codes are grabbed from a worksheet within a 'Retail Company' document, and new product entries are written to another worksheet.
+Most 'settings' related properties are currently hard-coded within the `product_database_builder.py` script. Pending UPC codes are grabbed from a worksheet within a 'Retail Company' document, and new product entries are written to yet another worksheet.
 
 For example, pending UPC codes can be grabbed from an AppSheet-connected or Forms-connected worksheet with something like this:
 ```
