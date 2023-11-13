@@ -9,6 +9,8 @@ A Google Sheets document is used in the back-end to store the product entries. T
 
 ## Usage
 
+You will not be able to use this application without some basic Python knowledge and `gspread` knowledge. Small modifications to `product_database_builder.py` are required.
+
 Most 'settings' related properties are currently hard-coded within the `product_database_builder.py` script. Pending UPC codes are grabbed from a worksheet within a 'Retail Company' document, and new product entries are written to another worksheet within the same document.
 
 For example, pending UPC codes can be grabbed from an AppSheet-connected or Forms-connected worksheet with something like this:
