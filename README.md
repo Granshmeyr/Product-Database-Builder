@@ -25,7 +25,7 @@ To actually use the application, run `python ./start.py` in Windows or Linux. Re
 
 ## Important Notes
 
-This application utilizes `gspread` to interact with the Google Sheets API. This requires creation of a credentials file as outline in https://docs.gspread.org/en/latest/oauth2.html#for-bots-using-service-account.
+This application utilizes `gspread` to interact with the Google Sheets API. This requires creation of a credentials file as outlined in https://docs.gspread.org/en/latest/oauth2.html#for-bots-using-service-account.
 
 Utilized APIs are:
 * https://www.upcitemdb.com/
@@ -37,7 +37,7 @@ UPCItemDB has a 100 request per 24 hours limit with a burst limit of 6 requests 
 
 #### UPC Database
 UPC Database has a 100 request per 24 hours limit with no / unspecified burst limit.
-This API requires an API key. This key is passed in `product_database_builder.py` in the respective API's class constructor and is sanitized to "KEY_HERE".
+This API requires an API key. This key is passed in `product_database_builder.py` in the respective API's class constructor. It is sanitized in the code to "KEY_HERE".
 
 #### barcode.monster
 barcode.monster has no / unspecified request limit with no / unspecified burst limit.
