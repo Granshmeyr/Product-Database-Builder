@@ -15,8 +15,8 @@ def main():
 
     pending_rows = pending_sheet.get("A2:A3")
 
-    if not pending_rows:
-        raise Exception("No pending UPCs found.")
+    if not pending_rows or pending_rows == [["#N/A"]]:
+        raise Exception(f"No pending UPCs found in {pending_rows}.")
 
     pending_upcs = [upc for row in pending_rows for upc in row]
 
@@ -125,10 +125,10 @@ class UPCItemDBAPI(ProductAPI):
         for item in data.get("items", []):
             products.append(
                 Product(
-                    upc=item[self.upc_path],
-                    title=item[self.title_path],
-                    desc=item[self.desc_path],
-                    brand=item[self.brand_path],
+                    upc=item.get(self.upc_path, None),
+                    title=item.get(self.title_path, None),
+                    desc=item.get(self.desc_path, None),
+                    brand=item.get(self.brand_path, None),
                 )
             )
 
@@ -170,10 +170,10 @@ class UPCDatabaseAPI(ProductAPI):
         return (
             Status.SUCCESS,
             Product(
-                upc=ean13_to_upca(data[self.ean_path]),
-                title=data[self.title_path],
-                desc=data[self.desc_path],
-                brand=data[self.brand_path],
+                upc=upc,
+                title=data.get(self.title_path, None),
+                desc=data.get(self.desc_path, None),
+                brand=data.get(self.brand_path, None),
             ),
         )
 
@@ -206,10 +206,10 @@ class BarcodeMonsterAPI(ProductAPI):
         return (
             Status.SUCCESS,
             Product(
-                upc=data[self.upc_path],
-                title=data[self.title_path],
-                desc=data[self.desc_path],
-                brand=data[self.brand_path],
+                upc=upc,
+                title=data.get(self.title_path, None),
+                desc=data.get(self.desc_path, None),
+                brand=data.get(self.brand_path, None),
             ),
         )
 
