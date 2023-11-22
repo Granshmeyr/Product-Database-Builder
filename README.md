@@ -1,14 +1,17 @@
+
 # Product Database Builder
 
 Dynamically build a product database using multiple barcode-driven APIs.
 
 This is a retail-oriented application which is used to dynamically build a product database  on-the-fly.
 
-A Google Sheets document is used in the back-end to store the product entries. This document can then double as a back-end for a Google AppSheet application to quickly deploy an inventory management application.
+A Google Sheets document is used in the back-end to store the product entries. This document can then double as a back-end for a Google AppSheet application or even a Google Form to quickly deploy an inventory management solution.
 
 ## Usage
 
-Most 'settings' related properties are currently hard-coded within the `product_database_builder.py` script. Pending UPC codes are grabbed from a worksheet within a 'Retail Company' document, and new product entries are written to another worksheet.
+You will not be able to use this application without some basic Python knowledge and `gspread` knowledge. Small modifications to `product_database_builder.py` are required.
+
+Most 'settings' related properties are currently hard-coded within the `product_database_builder.py` script. Pending UPC codes are grabbed from a worksheet within a 'Retail Company' document, and new product entries are written to another worksheet within the same document.
 
 For example, pending UPC codes can be grabbed from an AppSheet-connected or Forms-connected worksheet with something like this:
 ```
@@ -24,6 +27,8 @@ To actually use the application, run `python ./start.py` in Windows or Linux. Re
 
 ## Important Notes
 
+This application utilizes `gspread` to interact with the Google Sheets API. This requires creation of a credentials file as outlined in https://docs.gspread.org/en/latest/oauth2.html#for-bots-using-service-account.
+
 Utilized APIs are:
 * https://www.upcitemdb.com/
 * https://barcode.monster/
@@ -34,7 +39,7 @@ UPCItemDB has a 100 request per 24 hours limit with a burst limit of 6 requests 
 
 #### UPC Database
 UPC Database has a 100 request per 24 hours limit with no / unspecified burst limit.
-This API requires an API key. This key is passed in `product_database_builder.py` in the respective API's class constructor and is sanitized to "KEY_HERE".
+This API requires an API key. This key is passed in `product_database_builder.py` in the respective API's class constructor. It is sanitized in the code to "KEY_HERE".
 
 #### barcode.monster
 barcode.monster has no / unspecified request limit with no / unspecified burst limit.
