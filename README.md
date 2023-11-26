@@ -1,15 +1,18 @@
 
-# Product Database Builder
 
-Dynamically build a product database using multiple barcode-driven APIs.
+# Retail Scripts
 
-This is a retail-oriented application which is used to dynamically build a product database  on-the-fly.
+A few scripts to aid retail processes.
 
-A Google Sheets document is used in the back-end to store the product entries. This document can then double as a back-end for a Google AppSheet application or even a Google Form to quickly deploy an inventory management solution.
+* Google Sheets as back-end, doubles as back-end for AppSheet
+* Dynamically build product database from APIs
+* Extremely simple very-low-security login system for free AppSheet plan
 
 ## Usage
 
-You will not be able to use this application without some basic Python knowledge and `gspread` knowledge. Small modifications to `product_database_builder.py` are required.
+#### Product Database Builder
+
+You will not be able to use this script without some basic Python knowledge and `gspread` knowledge. Small modifications to `product_database_builder.py` are required.
 
 Most 'settings' related properties are currently hard-coded within the `product_database_builder.py` script. Pending UPC codes are grabbed from a worksheet within a 'Retail Company' document, and new product entries are written to another worksheet within the same document.
 
@@ -21,13 +24,17 @@ This code would be in the "Pending UPCs" sheet. It checks if any UPC from the "F
 
 These listed codes are then grabbed by `product_database_builder.py` and sent in GET requests to three APIs. The `get_apis_append_response` function supports any length UPC array. API limits apply. When building a product entry, the `get_apis_append_response` function prioritizes information from certain, 'more accurate', APIs.
 
+#### Session Token Timeout
+
+Automatically deletes session tokens from a credentials Google Sheet when they are older than 8 hours.
+
 ...
 
-To actually use the application, run `python ./start.py` in Windows or Linux. Recommended usage is to schedule a cron job to run the application every X minutes.
+To actually use the scripts, run `python ./start.py --script product_database_builder` or `python ./start.py --script session_timeout` in Windows or Linux. Recommended usage is to schedule a 'cron job' to run the desired script every X minutes.
 
 ## Important Notes
 
-This application utilizes `gspread` to interact with the Google Sheets API. This requires creation of a credentials file as outlined in https://docs.gspread.org/en/latest/oauth2.html#for-bots-using-service-account.
+These scripts utilize `gspread` to interact with the Google Sheets API. This requires creation of a credentials file as outlined in https://docs.gspread.org/en/latest/oauth2.html#for-bots-using-service-account.
 
 Utilized APIs are:
 * https://www.upcitemdb.com/
