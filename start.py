@@ -1,29 +1,50 @@
 #!/usr/bin/python
 
+
 import os
 import sys
 import subprocess
+import argparse
 
-match os.name:
-    case "posix":
-        if not os.path.isdir("venv"):
-            subprocess.run(["./venv.sh"])
-    case "nt":
-        if not os.path.isdir("venv"):
-            subprocess.run(["venv.bat"])
 
-match os.name:
-    case "posix":
-        python_path = "venv/bin/python"
-    case "nt":
-        python_path = "venv/Scripts/python.exe"
+def main():
+    parser = argparse.ArgumentParser()
 
-pd_builder_proc = [
-    python_path,
-    "product_database_builder.py",
-]
+    parser.add_argument("--script", "-s")
+    args = parser.parse_args()
 
-if sys.argv[1:] is not None:
-    pd_builder_proc.extend(sys.argv[1:])
+    script = args.script
 
-subprocess.run(pd_builder_proc)
+    match os.name:
+        case "posix":
+            if not os.path.isdir("venv"):
+                subprocess.run(["./venv.sh"])
+        case "nt":
+            if not os.path.isdir("venv"):
+                subprocess.run(["venv.bat"])
+
+    match os.name:
+        case "posix":
+            python_path = "venv/bin/python"
+        case "nt":
+            python_path = "venv/Scripts/python.exe"
+
+    match script:
+        case "product_database_builder":
+            proc = [
+                python_path,
+                "product_database_builder.py",
+            ]
+
+            subprocess.run(proc)
+        case "session_timeout":
+            proc = [
+                python_path,
+                "session_timeout.py",
+            ]
+
+            subprocess.run(proc)
+
+
+if __name__ == "__main__":
+    main()
