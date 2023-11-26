@@ -8,6 +8,8 @@ A few scripts to aid retail processes.
 * Dynamically build product database from APIs
 * Extremely simple very-low-security login system for free AppSheet plan
 
+These scripts are not usable unless a Google Sheets backend with proper layout is established.
+
 ## Usage
 
 #### Product Database Builder
