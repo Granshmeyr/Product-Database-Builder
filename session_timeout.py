@@ -11,9 +11,10 @@ def main():
     food_depot_logins_document = gclient.open_by_key("KEY_HERE")
     session_token_sheet = food_depot_logins_document.worksheet("Session Tokens")
 
-    token_rows = session_token_sheet.get_all_records(numericise_ignore=["all"])
-    if not token_rows:
-        raise Exception(f"No timestamps found in {token_rows}.")
+    try:
+        token_rows = session_token_sheet.get_all_records(numericise_ignore=["all"])
+    except:
+        raise Exception("No rows in Session Tokens.")
 
     invalid_token_indices = []
     for i, _dict in enumerate(token_rows):
